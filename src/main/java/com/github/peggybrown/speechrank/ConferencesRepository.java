@@ -19,7 +19,11 @@ public class ConferencesRepository {
     private List<Year> years;
 
     ConferencesRepository(String apiKey) {
-        importer = new Importer(apiKey);
+        this(new Importer(apiKey));
+    }
+
+    public ConferencesRepository(Importer importer) {
+        this.importer = importer;
         conferences = List.empty();
         initYears();
     }
@@ -69,7 +73,6 @@ public class ConferencesRepository {
         add("2019", new Conference("41", "Scalar", importer.importScalar2019().map(Presentation::new)));
         add("2018", new Conference("51", "Confitura", importer.importConfitura2018().map(Presentation::new)));
         add("2019", new Conference("51", "Confitura", importer.importConfitura2019().map(Presentation::new)));
-
     }
 
     private void initYears() {

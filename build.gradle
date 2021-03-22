@@ -27,11 +27,11 @@ dependencies {
     testCompile 'org.slf4j:slf4j-simple:1.7.30'
     testCompile 'junit:junit:4.12'
     testCompile 'org.assertj:assertj-core:3.6.2'
+    compile 'org.mockito:mockito-core:1.10.19'
     testCompile ('org.spockframework:spock-core:1.0-groovy-2.4') {
         exclude module: "groovy-all"
     }
     implementation 'junit:junit:4.12'
-
 }
 
 mainClassName = "com.github.peggybrown.speechrank.Main"
