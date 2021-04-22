@@ -7,7 +7,7 @@ import org.assertj.core.api.Assertions;
 import org.assertj.core.groups.Tuple;
 import org.junit.Test;
 
-import static org.assertj.core.groups.Tuple.*;
+import static org.assertj.core.api.Assertions.*;
 
 public class PresentationTest  {
 
@@ -16,10 +16,10 @@ public class PresentationTest  {
         //when
         Presentation presentation = new Presentation(aVideoData());
         //then
-        Assertions.assertThat(presentation.getComments()).isNotNull().hasSize(0);
-        Assertions.assertThat(presentation.getRates()).isNotNull().hasSize(0);
-        Assertions.assertThat(presentation.getId()).isNotNull();
-        Assertions.assertThat(presentation).extracting(//
+        assertThat(presentation.getComments()).isNotNull().hasSize(0);
+        assertThat(presentation.getRates()).isNotNull().hasSize(0);
+        assertThat(presentation.getId()).isNotNull();
+        assertThat(presentation).extracting(//
             Presentation::getLink, //
             Presentation::getRating, //
             Presentation::getTitle).//
@@ -35,22 +35,22 @@ public class PresentationTest  {
         //given
         Presentation presentation = new Presentation(aVideoData());
         presentation.addRate(aRate(3));
-        Assertions.assertThat(presentation.getRating()).isEqualTo(3);
+        assertThat(presentation.getRating()).isEqualTo(3);
         //when
         presentation.addRate(aRate(6));
         //then
-        Assertions.assertThat(presentation.getRating()).isEqualTo(4.5);
+        assertThat(presentation.getRating()).isEqualTo(4.5);
     }
 
     @Test
     public void should_add_rate() {
         //given
         Presentation presentation = new Presentation(aVideoData());
-        Assertions.assertThat(presentation.getRating()).isEqualTo(0);
+        assertThat(presentation.getRating()).isEqualTo(0);
         //when
         presentation.addRate(aRate(6));
         //then
-        Assertions.assertThat(presentation.getRates()).hasSize(1).containsExactly(aRate(6));
+        assertThat(presentation.getRates()).hasSize(1).containsExactly(aRate(6));
     }
 
     @Test
@@ -62,11 +62,11 @@ public class PresentationTest  {
         comment.setUserId("01");
         comment.setUsername("Janek");
         comment.setComment("Polecam!");
-        Assertions.assertThat(presentation.getComments()).hasSize(0);
+        assertThat(presentation.getComments()).hasSize(0);
         //when
         presentation.addComment(comment);
         //then
-        Assertions.assertThat(presentation.getComments()).hasSize(1).extracting(
+        assertThat(presentation.getComments()).hasSize(1).extracting(
             Comment::getUserId, Comment::getUsername, Comment::getComment
         ).containsExactly(
             tuple("01", "Janek", "Polecam!")

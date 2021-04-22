@@ -17,6 +17,7 @@ import java.util.Collections;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.tuple;
+import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.when;
 
 public class ConferencesRepositoryTest {
@@ -24,7 +25,7 @@ public class ConferencesRepositoryTest {
     @Test
     public void should_import_all_conferences() {
         //given
-        Importer importer = Mockito.mock(Importer.class);
+        Importer importer = mock(Importer.class);
         List<Importer.VideoData> lists = List.empty();
         when(importer.importDevConf2017()).thenReturn(lists);
         when(importer.importDevConf2019()).thenReturn(lists);
@@ -83,7 +84,7 @@ public class ConferencesRepositoryTest {
     @Test
     public void shoult_import_conference() {
         //given
-        Importer importer = Mockito.mock(Importer.class);
+        Importer importer = mock(Importer.class);
         String playlistId = "PLVbNBx5Phg3AwVti8rYNqx222pgfMZWO";
         when(importer.importFromYouTubePlaylist(playlistId)).thenReturn(List.of(
              aVideo("001", "TestNG", "What's new TestNG"),
@@ -146,7 +147,7 @@ public class ConferencesRepositoryTest {
 
     private Context prepareConferencesRepository() {
         Context result = new Context();
-        Importer importer = Mockito.mock(Importer.class);
+        Importer importer = mock(Importer.class);
         Importer.VideoData vD1 = aVideo("001", "Java 11", "What's new Java 11");
         Importer.VideoData vD2 = aVideo("002", "Java 12", "What's new Java 12");
         String playlistId = "PLVbNBx5Phg3AwVti8rYNqx222pgfMZWO";
